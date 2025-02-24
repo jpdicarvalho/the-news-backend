@@ -22,6 +22,10 @@ app.use(
 );
 
 // Webhook para registrar abertura de newsletter
+app.get("/", async (c) => {
+      return c.json({ message: "API Funcionando." }, 200);
+});
+// Webhook para registrar abertura de newsletter
 app.get("/webhook/newsletter-open", async (c) => {
   try {
     const email = c.req.query("email");
@@ -289,7 +293,6 @@ app.get("/admin/dashboard", authMiddleware, async (c) => {
     return c.json({ error: "Erro interno ao buscar dados." }, 500);
   }
 });
-
 
 // Função para verificar se a abertura foi consecutiva
 function checkIfConsecutive(lastOpened: string | null, today: Date): boolean {
